@@ -1,4 +1,5 @@
 #Assignment2
+
 import pandas as pd
 import numpy as np
 from sklearn.metrics import accuracy_score
@@ -28,24 +29,24 @@ y_train = train_data['meal']
 train_X, val_X, train_Y, val_Y = train_test_split(X_train, y_train, test_size=0.33, random_state=42)
 
 
-xgb_model = xgb.XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss')
+model = xgb.XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss')
 
 # Fit the model on training set
-modelFit = xgb_model.fit(train_X, train_Y)
+modelFit_temp = model.fit(train_X, train_Y)
 
 # Evaluate model on training set 
-train_preds = modelFit.predict(train_X)
+train_preds = modelFit_temp.predict(train_X)
 train_accuracy = accuracy_score(train_Y, train_preds)
 print("Training Accuracy: {:.2f}%".format(100 * train_accuracy))
 
 # Evaluate model on validation set
-val_preds = modelFit.predict(val_X)
+val_preds = modelFit_temp.predict(val_X)
 val_accuracy = accuracy_score(val_Y, val_preds)
 print("Validation Accuracy: {:.2f}%".format(100 * val_accuracy))
 
 
 # Fit the Final Model on the Full Training Data
-final_model = xgb_model.fit(X_train, y_train)
+modelFit = model.fit(X_train, y_train)
 
 # -------process test data and make predictions
 test_data = test_data.drop(['id', 'DateTime'], axis=1)
@@ -55,7 +56,7 @@ if 'meal' in test_data.columns:
 X_test = test_data[X_train.columns]
 
 
-predictions = final_model.predict(X_test)
+predictions = modelFit.predict(X_test)
 pred = predictions.astype(int).tolist()
 
 print("Number of predictions:", len(pred))
