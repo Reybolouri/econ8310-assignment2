@@ -8,8 +8,6 @@ from sklearn.model_selection import train_test_split
 train_url = "https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3.csv"
 test_url = "https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3test.csv"
 
-
-
 train_data = pd.read_csv(train_url)
 test_data = pd.read_csv(test_url)
 
