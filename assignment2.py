@@ -8,6 +8,10 @@ import xgboost as xgb
 
 train_url = "https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3.csv"
 test_url = "https://github.com/dustywhite7/Econ8310/raw/master/AssignmentData/assignment3test.csv"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 931cb223d4f8f6b3f29095fa35ead4b018aee7c9
 train_data = pd.read_csv(train_url)
 test_data = pd.read_csv(test_url)
 
@@ -59,4 +63,8 @@ predictions = final_model.predict(X_test)
 pred = predictions.astype(int).tolist()
 
 print("Number of predictions:", len(pred))
+<<<<<<< HEAD
 print("First 10 predictions:", pred[:10])
+=======
+print(pd.DataFrame({'predicted_meal': pred}).head())
+>>>>>>> 931cb223d4f8f6b3f29095fa35ead4b018aee7c9
